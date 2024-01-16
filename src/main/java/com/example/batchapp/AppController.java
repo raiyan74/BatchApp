@@ -1,5 +1,6 @@
 package com.example.batchapp;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
@@ -18,19 +19,28 @@ public class AppController {
     private Label logoFile;
 
     @FXML
+    private Label logoSize_valueLabel;
+    @FXML
+    private Slider logoSize_valueSlider;
+
+    int logoSizeValue;
+
+    int initialLogoSizeSliderValue = 3; // Set your desired initial value here
+/*
+    @FXML
     private Label H_valueLabel;
 
     @FXML
     private Slider H_valueSlider;
-
+*/
     int logoHorValue, logoVerValue;
-
+/*
     @FXML
     private Label V_valueLabel;
 
     @FXML
     private Slider V_valueSlider;
-
+*/
     @FXML
     private Label laceFile;
 
@@ -48,10 +58,15 @@ public class AppController {
 
     String inputPath, outputPath, logoPath, lacePath;
 
-    int userOpacityInput;
+    int userOpacityInput = 30;
 
     @FXML
-    private TextField input;
+    private TextField laceOinput;
+
+    @FXML
+    private Label resultLabel;
+
+
 
 
     @FXML
@@ -103,7 +118,60 @@ public class AppController {
         }
     }
 
+    @FXML
+    public void handleButtonClick(ActionEvent event) {
+        if (event.getSource() instanceof Button clickedButton) {
 
+            // Example conditional logic based on which button is clicked
+            if (clickedButton.getId().equals("button1")) {
+                // Assign values for the first set of variables if Button 1 is clicked
+                logoHorValue = 5;
+                logoVerValue = 5;
+
+                resultLabel.setText("Selected Position: " + logoHorValue + ", " + logoVerValue);
+            } else if (clickedButton.getId().equals("button2")) {
+                // Assign values for the second set of variables if Button 2 is clicked
+                logoHorValue = 80;
+                logoVerValue = 5;
+
+                resultLabel.setText("Selected Position: " + logoHorValue + ", " + logoVerValue);
+            } else if (clickedButton.getId().equals("button3")) {
+
+                // Assign values for the second set of variables if Button 3 is clicked
+                logoHorValue = 5;
+                logoVerValue = 90;
+
+                resultLabel.setText("Selected Position: " + logoHorValue + ", " + logoVerValue);
+
+            } else if (clickedButton.getId().equals("button4")) {
+
+                // Assign values for the second set of variables if Button 2 is clicked
+                logoHorValue = 80;
+                logoVerValue = 90;
+
+                resultLabel.setText("Selected Position: " + logoHorValue + ", " + logoVerValue);
+            }
+
+            //resultLabel.setText("You clicked: " + clickedButton.getText());
+        }
+    }
+
+
+    @FXML
+    public void initialize() {
+
+        logoSize_valueSlider.setValue(initialLogoSizeSliderValue); // Set initial value
+        logoSizeValue = initialLogoSizeSliderValue;
+        logoSize_valueLabel.setText("Logo Size: " + initialLogoSizeSliderValue); // Update label with initial value
+
+
+        logoSize_valueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            logoSizeValue = newValue.intValue();
+            logoSize_valueLabel.setText("Logo Size: " + logoSizeValue);
+        });
+    }
+
+/*
     @FXML
     public void initialize() {
         H_valueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -117,7 +185,7 @@ public class AppController {
                 V_valueLabel.setText("Selected Value: " + logoVerValue);
         });
     }
-
+*/
     @FXML
     protected void onLaceInputButtonClick() {
 
@@ -174,6 +242,7 @@ public class AppController {
     @FXML
     protected void onBatchButtonClick() throws IOException {
 
+        progressBar.setProgress(0.0);
         // Make progress bar and label visible
         progressBar.setVisible(true);
         progressLabel.setVisible(true);
@@ -181,7 +250,8 @@ public class AppController {
         progressBar.setPrefWidth(300); // Set preferred width
         progressBar.setPrefHeight(30);
 
-        //if((inputPath!=null) && (logoPath!=null) && (lacePath!=null) && (outputPath!=null) ) {
+/*
+        if((inputPath!=null) && (logoPath!=null) && (lacePath!=null) && (outputPath!=null) && (logoHorValue!=0) && (logoVerValue!=0) ) {
 
             runBatch.setText("processing!");
 
@@ -191,31 +261,61 @@ public class AppController {
                     showAlert("Valid Input", "lace opacity will be: " + userOpacityInput);
 
 
-                    //ProcessingMethods.processImages(inputPath, logoPath, lacePath, outputPath, userOpacityInput, logoHorValue, logoVerValue);
+                    ProcessingMethods.processImages(inputPath, logoPath, lacePath, outputPath, userOpacityInput, logoHorValue, logoVerValue, logoSizeValue);
                     // Use the updated method and listen to progress
                     //int totalFiles = ProcessingMethods.processImages("F:\\PICX\\BatchTest\\input", "F:\\PICX\\BatchTest\\logo\\logoCtrans.png", "F:\\PICX\\BatchTest\\output");
 
                     // Use the updated method and listen to progress
-                    ProcessingMethods.processImages(
-                            "F:\\PICX\\BatchTest\\input",
-                            "F:\\PICX\\BatchTest\\logo\\logoCtrans.png",
-                            "F:\\PICX\\BatchTest\\Lace\\lace.png",
-                            "F:\\PICX\\BatchTest\\output",
-                            30, logoHorValue, logoVerValue);
+                    //ProcessingMethods.processImages("F:\\PICX\\BatchTest\\input", "F:\\PICX\\BatchTest\\logo\\logoCtrans.png", "F:\\PICX\\BatchTest\\Lace\\lace.png", "F:\\PICX\\BatchTest\\output", 30, logoHorValue, logoVerValue);
 
                     progressBar.setProgress(100);
                     //runBatch.setText("Done! Processed " + totalFiles + " images.");
                     runBatch.setText("Done!");
 
                 } else {
-                    showAlert("Invalid Input", "Please enter a number between 1 and 100");
+                    showAlert("Invalid Opacity", "Please enter a number between 1 and 100");
                 }
             } catch (NumberFormatException e) {
                 showAlert("Invalid Input", "Please enter a valid integer");
             }
-        //}else {
-        //    showAlert("Invalid Input", "One or more input details might be missing.");
-        //}
+        }else {
+            showAlert("Invalid Input", "One or more input details might be missing.");
+        }
+
+
+*/
+
+            //this part for quick testing without needing to select everything everytime.
+//star placement
+
+            runBatch.setText("processing!");
+
+            try {
+                userOpacityInput = Integer.parseInt(laceOinput.getText());
+                if (userOpacityInput >= 1 && userOpacityInput <= 100) {
+                    showAlert("Valid Input", "lace opacity will be: " + userOpacityInput);
+
+
+                    //ProcessingMethods.processImages(inputPath, logoPath, lacePath, outputPath, userOpacityInput, logoHorValue, logoVerValue);
+                    // Use the updated method and listen to progress
+                    //int totalFiles = ProcessingMethods.processImages("F:\\PICX\\BatchTest\\input", "F:\\PICX\\BatchTest\\logo\\logoCtrans.png", "F:\\PICX\\BatchTest\\output");
+
+                    // Use the updated method and listen to progress
+                    ProcessingMethods.processImages("F:\\PICX\\BatchTest\\input", "F:\\PICX\\BatchTest\\logo\\logoCtrans.png", "F:\\PICX\\BatchTest\\Lace\\lace.png", "F:\\PICX\\BatchTest\\output", 30, logoHorValue, logoVerValue, logoSizeValue);
+
+                    progressBar.setProgress(100);
+                    //runBatch.setText("Done! Processed " + totalFiles + " images.");
+                    runBatch.setText("Done!");
+
+                } else {
+                    showAlert("Invalid Opacity", "Please enter a number between 1 and 100");
+                }
+            } catch (NumberFormatException e) {
+                showAlert("Invalid Input", "Please enter a valid integer");
+            }
+
+//star placement
+
 
     }
 

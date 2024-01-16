@@ -3,6 +3,7 @@ package com.example.batchapp;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,7 +12,12 @@ public class BatchEditorApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BatchEditorApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 720, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 480, 680);
+
+        // Load the icon image
+        Image icon = new Image("file:icon/icon.png");
+        stage.getIcons().add(icon);
+
         stage.setTitle("AutoGo");
         stage.setScene(scene);
         stage.show();

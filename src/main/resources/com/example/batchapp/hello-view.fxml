@@ -11,8 +11,13 @@
 <?import javafx.scene.control.TextField?>
 
 <?import javafx.scene.control.Slider?>
+
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
 <VBox alignment="TOP_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.batchapp.AppController">
+      fx:controller="com.example.batchapp.AppController" >
+
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
@@ -20,16 +25,45 @@
     <!--<Label fx:id="welcomeText"/>
     <Button text="Hello!" onAction="#onHelloButtonClick"/> -->
 
+    <!-- input folder selection -->
     <HBox spacing="10">
+
         <Button text="Select Input Folder" onAction="#onInputButtonClick"/>
         <Label fx:id="inputPromptText"/>
+
+    </HBox>
+
+
+    <!-- logo file selection -->
+    <HBox spacing="10">
+
+        <Button text="Select Logo" onAction="#onLogoInputButtonClick"/>
+        <Label fx:id="logoFile"/>
+
     </HBox>
 
     <HBox spacing="10">
-        <Button text="Select Logo" onAction="#onLogoInputButtonClick"/>
-        <Label fx:id="logoFile"/>
+
+        <Label fx:id="logoSize_valueLabel"/>
+        <Slider fx:id="logoSize_valueSlider" min="1" max="5" showTickLabels="true" showTickMarks="true" majorTickUnit="1" minorTickCount="5"/>
+
     </HBox>
 
+
+
+    <!-- suggestion label
+    <HBox prefHeight="20" style="-fx-background-color: #8c8c8c;-fx-font-family: Courier New;-fx-text-fill: #00FF00;">
+
+        <Label text="Top left: 5,5. Top right: 80,5. Bottom left: 5,90. Bottom right: 80,90">
+
+            <style>
+                -fx-font-family: "Courier New";
+            </style>
+
+        </Label>
+    </HBox>
+-->
+    <!-- logo positioning slidbar
     <HBox spacing="30">
         <Label fx:id="H_valueLabel" text="Horizontal Position: " minWidth="120"/>
         <Slider fx:id="H_valueSlider" min="0" max="100" value="50" showTickLabels="true" showTickMarks="true"/>
@@ -37,16 +71,46 @@
         <Label fx:id="V_valueLabel" text="Vertical Position: " minWidth="120"/>
         <Slider fx:id="V_valueSlider" min="0" max="100" value="50" showTickLabels="true" showTickMarks="true" orientation="VERTICAL"/>
     </HBox>
+    -->
+    <HBox prefHeight="110">
+        <Label fx:id="resultLabel" text="Logo Position: " prefWidth="150"/>
 
+        <GridPane xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10" vgap="10">
+
+
+            <style>
+
+                -fx-background-color: #383838;
+                -fx-text-fill: white;
+                -fx-font-size: 12px;
+                -fx-pref-width: 250px;
+                -fx-pref-height: 50px;
+
+            </style>
+
+            <Button fx:id="button1" text="Top Left" onAction="#handleButtonClick" prefWidth="100" prefHeight="30"/>
+            <Button fx:id="button2" text="Top Right" GridPane.columnIndex="1" onAction="#handleButtonClick" prefWidth="100" prefHeight="30"/>
+            <Button fx:id="button3" text="Bottom Left" GridPane.rowIndex="1" onAction="#handleButtonClick" prefWidth="100" prefHeight="30"/>
+            <Button fx:id="button4" text="Bottom Right" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#handleButtonClick" prefWidth="100" prefHeight="30"/>
+
+        </GridPane>
+    </HBox>
+
+    <!-- lace selection -->
     <HBox spacing="10">
         <Button text="Select Lace" onAction="#onLaceInputButtonClick"/>
 
-        <TextField fx:id="input"  promptText="Opacity 1 to 100"/>
+        <Label text="Lace Opacity % :"/>
+
+        <TextField fx:id="laceOinput" text="30"  promptText="Opacity 1 to 100" maxWidth="35"/>
 
         <Label fx:id="laceFile"/>
+
+
     </HBox>
 
 
+    <!-- output folder selection -->
     <HBox spacing="10">
 
         <Button text="Select Output Folder" onAction="#onBatchOutputButtonClick"/>
@@ -60,7 +124,7 @@
     </HBox>
 
 
-    <ProgressBar fx:id="progressBar" progress="0.0" visible="false"/>
+    <ProgressBar fx:id="progressBar" progress="0.0" visible="false" prefWidth="200"/>
     <Label fx:id="progressLabel"  visible="false"/>
 
 
