@@ -1,0 +1,5 @@
+/* style.css */
+.root {
+    -fx-font-family: "Century Gothic"; /* Change "Arial" to your desired font family */
+    -fx-font-size: 12px;      /* Adjust font size as needed */
+}

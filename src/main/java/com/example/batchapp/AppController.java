@@ -26,21 +26,21 @@ public class AppController {
     int logoSizeValue;
 
     int initialLogoSizeSliderValue = 3; // Set your desired initial value here
-/*
-    @FXML
-    private Label H_valueLabel;
+    /*
+        @FXML
+        private Label H_valueLabel;
 
-    @FXML
-    private Slider H_valueSlider;
-*/
+        @FXML
+        private Slider H_valueSlider;
+    */
     int logoHorValue, logoVerValue;
-/*
-    @FXML
-    private Label V_valueLabel;
+    /*
+        @FXML
+        private Label V_valueLabel;
 
-    @FXML
-    private Slider V_valueSlider;
-*/
+        @FXML
+        private Slider V_valueSlider;
+    */
     @FXML
     private Label laceFile;
 
@@ -171,21 +171,21 @@ public class AppController {
         });
     }
 
-/*
-    @FXML
-    public void initialize() {
-        H_valueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            logoHorValue = newValue.intValue();
-            H_valueLabel.setText("Selected Value: " + logoHorValue);
-        });
+    /*
+        @FXML
+        public void initialize() {
+            H_valueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                logoHorValue = newValue.intValue();
+                H_valueLabel.setText("Selected Value: " + logoHorValue);
+            });
 
 
-        V_valueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                logoVerValue = newValue.intValue();
-                V_valueLabel.setText("Selected Value: " + logoVerValue);
-        });
-    }
-*/
+            V_valueSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                    logoVerValue = newValue.intValue();
+                    V_valueLabel.setText("Selected Value: " + logoVerValue);
+            });
+        }
+    */
     @FXML
     protected void onLaceInputButtonClick() {
 
@@ -250,13 +250,13 @@ public class AppController {
         progressBar.setPrefWidth(300); // Set preferred width
         progressBar.setPrefHeight(30);
 
-/*
+
         if((inputPath!=null) && (logoPath!=null) && (lacePath!=null) && (outputPath!=null) && (logoHorValue!=0) && (logoVerValue!=0) ) {
 
             runBatch.setText("processing!");
 
             try {
-                userOpacityInput = Integer.parseInt(input.getText());
+                userOpacityInput = Integer.parseInt(laceOinput.getText());
                 if (userOpacityInput >= 1 && userOpacityInput <= 100) {
                     showAlert("Valid Input", "lace opacity will be: " + userOpacityInput);
 
@@ -283,11 +283,11 @@ public class AppController {
         }
 
 
-*/
 
-            //this part for quick testing without needing to select everything everytime.
+
+        //this part for quick testing without needing to select everything everytime.
 //star placement
-
+/*
             runBatch.setText("processing!");
 
             try {
@@ -315,7 +315,7 @@ public class AppController {
             }
 
 //star placement
-
+*/
 
     }
 
