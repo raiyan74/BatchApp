@@ -1,9 +1,13 @@
 How to run the application:
 
-  -Download the "Batch Editor.rar" file.
+  -Download the "AutoGo.exe" file;
   
-  -Extract on your device.
+  - Create a folder and move the AutoGo file in there;
+
+  - Download Java 21 JDK and install it in a folder inside the AutoGo folder;
+
+  - Download JavaFX SDK 19.0.2.1 and move it to the same directory as the JDK from the previous step;
   
-  -locate the "AutoGoBatch.bat" file in the \bin folder.
+  - The directory structure is important.
   
-  -Run.
+  -Run "AutoGo.exe".
